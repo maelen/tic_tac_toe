@@ -3,6 +3,7 @@
 
 import random
 
+
 def is_winning(board, pos_x, pos_y, player):
     winning = False
     testing = False
@@ -36,7 +37,7 @@ def is_winning(board, pos_x, pos_y, player):
                 print("Match Diag 1")
             else:
                 if(board[x][x] != board[x + 1][x + 1]):
-                    #print("No Match Diag 1")
+                    # print("No Match Diag 1")
                     break
 
     if pos_x + pos_y == 2:
@@ -46,7 +47,7 @@ def is_winning(board, pos_x, pos_y, player):
                 print("Match Diag 2")
             else:
                 if(board[x][2 - x] != board[x + 1][1 - x]):
-                    #print("No Match Diag 2")
+                    # print("No Match Diag 2")
                     break
 
     if(testing):
@@ -74,7 +75,7 @@ def get_next_position(board, last_position, player):
             last_position == (0, 2) or
             last_position == (2, 0) or
             last_position == (2, 2) and
-            board[1][1] == 0):
+                board[1][1] == 0):
             print("Other player pulling a fast one 1")
             return(1, 1)
 
@@ -110,7 +111,7 @@ def main(winstyle=0):
     last_position = None
     winner = None
     player = 1
-    
+
     for i in range(9):
         # write to board
         (x, y) = get_next_position(board, last_position, player)
@@ -124,8 +125,8 @@ def main(winstyle=0):
             break
         else:
             player = 2 if player == 1 else 1
-            
-    if winner == None:
+
+    if winner is None:
         print("No winner !")
     else:
         print("Winner is player {}".format(player))
