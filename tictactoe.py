@@ -13,58 +13,58 @@ def is_winning(board, pos_x, pos_y, player):
         board[pos_x][pos_y] = player
 
     for y in range(0, 3):
-        if (y == 2):
+        if y == 2:
             winning = True
             print("Match H Line")
         else:
-            if(board[pos_x][y] != board[pos_x][y + 1]):
+            if board[pos_x][y] != board[pos_x][y + 1]:
                 # print("No Match H Line")
                 break
 
     for x in range(0, 3):
-        if (x == 2):
+        if x == 2:
             winning = True
             print("Match V Line")
         else:
-            if(board[x][pos_y] != board[x + 1][pos_y]):
+            if board[x][pos_y] != board[x + 1][pos_y]:
                 # print("No Match V Line")
                 break
 
     if pos_x == pos_y:
         for x in range(0, 3):
-            if (x == 2):
+            if x == 2:
                 winning = True
                 print("Match Diag 1")
             else:
-                if(board[x][x] != board[x + 1][x + 1]):
+                if board[x][x] != board[x + 1][x + 1]:
                     # print("No Match Diag 1")
                     break
 
     if pos_x + pos_y == 2:
         for x in range(0, 3):
-            if (x == 2):
+            if x == 2:
                 winning = True
                 print("Match Diag 2")
             else:
-                if(board[x][2 - x] != board[x + 1][1 - x]):
+                if board[x][2 - x] != board[x + 1][1 - x]:
                     # print("No Match Diag 2")
                     break
 
-    if(testing):
+    if testing:
         board[pos_x][pos_y] = 0
 
     return winning
 
 
 def get_next_position(board, last_position, player):
-    otherPlayer = 2 if player == 1 else 1
+    other_player = 2 if player == 1 else 1
 
     for x in range(0, 3):
         for y in range(0, 3):
-            if(is_winning(board, x, y, player)):
+            if is_winning(board, x, y, player):
                 print("Player winning position")
                 return(x, y)
-            elif(is_winning(board, x, y, otherPlayer)):
+            elif is_winning(board, x, y, other_player):
                 print("Other player winning position")
                 return(x, y)
 
@@ -85,25 +85,25 @@ def get_next_position(board, last_position, player):
         if last_position == (1, 1):
             print("Other player pulling a fast one 2")
             # Choose first available corner
-            if(board[0][0] == 0):
+            if board[0][0] == 0:
                 return(0, 0)
-            elif(board[0][2] == 0):
+            elif board[0][2] == 0:
                 return(0, 2)
-            elif(board[2][0] == 0):
+            elif board[2][0] == 0:
                 return(2, 0)
-            elif(board[2][2] == 0):
+            elif board[2][2] == 0:
                 return(0, 0)
 
     # Choose a random position
-    while(True):
+    while True:
         x = random.randint(0, 2)
         y = random.randint(0, 2)
-        if (board[x][y] == 0):
+        if board[x][y] == 0:
             print("Random position")
             return (x, y)
 
 
-def main(winstyle=0):
+def main():
     board = [[0, 0, 0],
              [0, 0, 0],
              [0, 0, 0]]
@@ -112,7 +112,7 @@ def main(winstyle=0):
     winner = None
     player = 1
 
-    for i in range(9):
+    for _ in range(9):
         # write to board
         (x, y) = get_next_position(board, last_position, player)
         board[x][y] = player
